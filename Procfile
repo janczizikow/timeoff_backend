@@ -1,2 +1,2 @@
-web: gunicorn timeoff.wsgi
+web: gunicorn timeoff.wsgi —-log-file -
 
