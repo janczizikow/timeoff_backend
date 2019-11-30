@@ -5,6 +5,7 @@ Django==2.2.7
 django-environ==0.4.5
 django-heroku==0.3.1
 djangorestframework==3.10.3
+gunicorn==20.0.4
 isort==4.3.21
 lazy-object-proxy==1.4.3
 mccabe==0.6.1
