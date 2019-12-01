@@ -16,6 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+handler400 = 'rest_framework.exceptions.bad_request'
+handler404 = 'timeoff.exceptions.not_found'
+handler500 = 'rest_framework.exceptions.server_error'
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/auth/', include('authentication.urls'), name="authentication"),
