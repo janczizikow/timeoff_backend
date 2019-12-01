@@ -4,9 +4,10 @@ from django.utils.crypto import get_random_string
 from django.conf import settings
 from django.template.loader import render_to_string
 from rest_framework import status
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from rest_framework.exceptions import NotFound
+from rest_framework.permissions import AllowAny
 
 from timeoff.tasks import send_mail_async
 from .models import User
@@ -14,6 +15,7 @@ from .serializers import ResetPasswordSerializer
 
 
 @api_view(['POST'])
+@permission_classes([AllowAny])
 def forgot_password(request):
     """
     Sets `reset_token` and `reset_token_expiry` on User
@@ -50,6 +52,7 @@ def forgot_password(request):
 
 
 @api_view(['POST'])
+@permission_classes([AllowAny])
 def reset_password(request):
     """
     Changes password and resets `reset_token` and `reset_token_expiry`

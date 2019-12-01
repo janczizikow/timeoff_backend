@@ -11,6 +11,8 @@
 Endpoints:
 ------
 
+All protected reuqest are marked with __authentication required__ - pass Authorization: "Bearer <access_token>" with a valid access_token.
+
 ### Authentication:
 
 `POST /api/auth/token`
@@ -95,3 +97,53 @@ Returns __204 NO_CONTENT__
 Required fields: `reset_token`, `password`, `confirm_password`
 
 Returns __204 NO_CONTENT__
+
+
+### Leave Requests
+
+
+## LeaveRequest
+```
+{
+    "id": 1,
+    "start": "2019-12-02T10:00:00.000Z",
+    "end": "2019-12-03T19:00:00.000Z",
+    "description": "",
+    "type": "VACATION",
+    "status": "PENDING"
+}
+```
+
+`GET /api/leave-requests/`
+
+__authentication required__
+
+List of leave requests for user
+
+
+`GET /api/leave-requests/<id>`
+
+__authentication required__
+
+Retrieves leave request instance
+
+
+`POST /api/leave-requests/`
+
+__authentication required__
+
+Creates a new Leave Request
+
+
+`PUT /api/leave-requests/<id>`
+
+__authentication required__
+
+Updates a Leave Request
+
+
+`DELETE /api/leave-requests/<id>`
+
+__authentication required__
+
+Deletes a Leave Request
