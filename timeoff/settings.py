@@ -31,6 +31,8 @@ DEBUG = DEBUG_ENV == 'True'
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv('SECRET_KEY', 'secret')
 
+CLIENT_URL = os.getenv('CLIENT_URL', 'http://localhost:3000/')
+
 ALLOWED_HOSTS = []
 
 
@@ -60,7 +62,8 @@ MIDDLEWARE = [
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
-    )
+    ),
+    'NON_FIELD_ERRORS_KEY': 'error',
 }
 
 SIMPLE_JWT = {
@@ -89,12 +92,21 @@ SIMPLE_JWT = {
     'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=15),
 }
 
+# Email stuff
+
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_HOST_USER = 'apikey'
+EMAIL_HOST_PASSWORD = os.getenv('SENDGRID_API_KEY', '')
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'no-reply@timeoff.com'
+
 ROOT_URLCONF = 'timeoff.urls'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, "templates")],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
