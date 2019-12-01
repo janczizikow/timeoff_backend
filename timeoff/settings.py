@@ -175,5 +175,11 @@ STATIC_URL = '/static/'
 # Specify custom User model
 AUTH_USER_MODEL = 'authentication.User'
 
+# Background jobs
+CELERY_BROKER_URL = os.getenv('REDIS_URL', 'redis://')
+
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+
 # Activate Django-Heroku.
 django_heroku.settings(locals())

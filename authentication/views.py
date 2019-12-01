@@ -1,7 +1,6 @@
 from datetime import datetime, timedelta
 from django.utils import timezone
 from django.utils.crypto import get_random_string
-from django.core.mail import send_mail
 from django.conf import settings
 from django.template.loader import render_to_string
 from rest_framework import status
@@ -9,7 +8,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.exceptions import NotFound
 
-
+from timeoff.tasks import send_mail_async
 from .models import User
 from .serializers import ResetPasswordSerializer
 
@@ -33,9 +32,7 @@ def forgot_password(request):
     reset_password_url = settings.CLIENT_URL + \
         'reset-password/?token=' + user.reset_token
 
-    # TODO: figure out how to do this in background
-    # https://devcenter.heroku.com/articles/celery-heroku
-    send_mail(
+    send_mail_async.delay(
         'Timeoff Password Reset',
         render_to_string("emails/reset-password.txt",
                          {"url": reset_password_url}),
