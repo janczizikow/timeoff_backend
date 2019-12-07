@@ -122,6 +122,47 @@ Returns __204 NO_CONTENT__
 
 ---
 
+`GET /api/auth/me/`
+
+__authentication required__
+
+Retrieves current user information
+
+```
+{
+    "id": 1,
+    "email": "user@example.com",
+    "gender": "male",
+    "first_name": "John",
+    "last_name": "Doe",
+    "preferred_name": "",
+    "birth_date": "YYYY-MM-DD"
+}
+```
+
+---
+
+`PUT /api/auth/me/`
+
+__authentication required__
+
+Updates current user information
+
+Example request body:
+```
+{
+    "id": 1,
+    "email": "user@example.com",
+    "gender": "male",
+    "first_name": "John",
+    "last_name": "Doe",
+    "preferred_name": "",
+    "birth_date": "YYYY-MM-DD"
+}
+```
+
+---
+
 ## Leave Requests
 
 ### LeaveRequest
