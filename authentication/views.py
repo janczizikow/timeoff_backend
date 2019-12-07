@@ -73,3 +73,25 @@ def reset_password(request):
     serializer.save()
 
     return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+@api_view(['POST'])
+def change_password(request):
+    """
+    Changes old password to new one
+    """
+    try:
+        user = request.user
+        if not user.check_password(request.data["current_password"]):
+            return Response({"detail": "Current password is invalid"})
+        elif request.data["new_password"] != request.data["confirm_new_password"]:
+            return Response({"detail": "Passwords don't match"})
+        user.set_password(request.data["new_password"])
+        user.save()
+    except KeyError:
+        return Response(
+            {"detail": "Missing one of required fields: current_password, new_password, confirm_new_password"},
+            status=status.HTTP_400_BAD_REQUEST
+        )
+
+    return Response(status=status.HTTP_204_NO_CONTENT)

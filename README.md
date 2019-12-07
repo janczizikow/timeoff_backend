@@ -41,6 +41,7 @@ Returns __auth payload__
 
 `access` is a short-lived token, once it expires use `refresh` token to obtain another access token
 
+---
 
 `POST /api/auth/token/refresh`
 
@@ -61,6 +62,7 @@ Returns __new access token__
 {"access":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX3BrIjoxLCJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiY29sZF9zdHVmZiI6IuKYgyIsImV4cCI6MTIzNTY3LCJqdGkiOiJjNzE4ZTVkNjgzZWQ0NTQyYTU0NWJkM2VmMGI0ZGQ0ZSJ9.ekxRxgb9OKmHkfy-zs1Ro_xs1eMLXiR17dIDBVxeT-w"}
 ```
 
+---
 
 `POST /api/auth/forgot-password/`
 
@@ -78,6 +80,7 @@ Required fields: `email`
 
 Returns __204 NO_CONTENT__
 
+---
 
 `POST /api/auth/reset-password/`
 
@@ -92,17 +95,34 @@ Example request body:
 }
 ```
 
-Returns __204 NO_CONTENT__
-
 Required fields: `reset_token`, `password`, `confirm_password`
 
 Returns __204 NO_CONTENT__
 
+---
 
-### Leave Requests
+`POST /api/auth/change-password/`
 
+Changes user password.
 
-## LeaveRequest
+Example request body:
+```
+{
+  "current_password": "secret123",
+  "new_password": "new_password123",
+  "confirm_new_password": "new_password123"
+}
+```
+
+Required fields: `current_password`, `new_password`, `confirm_new_password`
+
+Returns __204 NO_CONTENT__
+
+---
+
+## Leave Requests
+
+### LeaveRequest
 ```
 {
     "id": 1,
@@ -120,6 +140,7 @@ __authentication required__
 
 List of leave requests for user
 
+---
 
 `GET /api/leave-requests/<id>`
 
@@ -127,6 +148,7 @@ __authentication required__
 
 Retrieves leave request instance
 
+---
 
 `POST /api/leave-requests/`
 
@@ -134,6 +156,7 @@ __authentication required__
 
 Creates a new Leave Request
 
+---
 
 `PUT /api/leave-requests/<id>`
 
@@ -141,6 +164,7 @@ __authentication required__
 
 Updates a Leave Request
 
+---
 
 `DELETE /api/leave-requests/<id>`
 
