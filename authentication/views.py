@@ -11,7 +11,7 @@ from rest_framework.permissions import AllowAny
 
 from timeoff.tasks import send_mail_async
 from .models import User
-from .serializers import ResetPasswordSerializer
+from .serializers import ResetPasswordSerializer, UserSerializer
 
 
 @api_view(['POST'])
@@ -95,3 +95,18 @@ def change_password(request):
         )
 
     return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+@api_view(['GET', 'PUT'])
+def me(request):
+    """
+    Retrieve or update currently authenticated user.
+    """
+    if request.method == 'GET':
+        serializer = UserSerializer(request.user)
+        return Response(serializer.data)
+    elif request.method == 'PUT':
+        serializer = UserSerializer(request.user, data=request.data)
+        if serializer.is_valid(raise_exception=True):
+            serializer.save()
+        return Response(serializer.data)
