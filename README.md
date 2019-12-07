@@ -103,6 +103,8 @@ Returns __204 NO_CONTENT__
 
 `POST /api/auth/change-password/`
 
+__authentication required__
+
 Changes user password.
 
 Example request body:
