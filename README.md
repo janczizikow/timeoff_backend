@@ -43,7 +43,7 @@ Returns __auth payload__
 
 ---
 
-`POST /api/auth/token/refresh`
+`POST /api/auth/refresh`
 
 Generates new short-lived access token.
 
