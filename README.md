@@ -11,7 +11,7 @@
 Endpoints:
 ------
 
-All protected reuqest are marked with __authentication required__ - pass Authorization: "Bearer <access_token>" with a valid access_token.
+All protected endpoints are marked with __authentication required__ - pass Authorization: "Bearer <access_token>" with a valid access_token.
 
 ### Authentication:
 
@@ -24,7 +24,7 @@ Example request body:
 ```
 {
   "email": "user@example.com",
-  "password: "password"
+  "password": "password"
 }
 ```
 
@@ -198,6 +198,17 @@ Retrieves leave request instance
 __authentication required__
 
 Creates a new Leave Request
+
+Example request body:
+```
+{
+    "start": "2019-12-02T10:00:00.000Z",
+    "end": "2019-12-03T19:00:00.000Z",
+    "description": "Gotta chill.",
+    "type": "VACATION",
+    "status": "PENDING"
+}
+```
 
 ---
 

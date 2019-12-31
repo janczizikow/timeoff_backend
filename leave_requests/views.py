@@ -20,7 +20,7 @@ class LeaveRequestList(APIView):
     def post(self, request, format=None):
         serializer = LeaveRequestSerializer(data=request.data)
         if serializer.is_valid(raise_exception=True):
-            serializer.save()
+            serializer.save(user=self.request.user)
             return Response(serializer.data)
 
 
